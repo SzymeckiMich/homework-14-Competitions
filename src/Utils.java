@@ -51,6 +51,6 @@ public class Utils {
     }
 
     private static String toCSV(Person person) {
-        return person.getFirstName() + " " + person.getLastName() + " " + person.getScore();
+        return person.getFirstName() + ";" + person.getLastName() + ";" + person.getScore();
     }
 }
