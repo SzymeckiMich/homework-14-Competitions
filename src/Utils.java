@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.util.*;
 
 public class Utils {
+
+    static final String STOP_WORD = "stop";
+
     public static List<Person> createNewAthletesList() {
         return new ArrayList<>();
     }
@@ -12,10 +15,10 @@ public class Utils {
     public static void addNewAthletesToList(List<Person> athletes) {
         String zawodnik = "0";
         try (Scanner scanner = new Scanner(System.in)) {
-            while (!zawodnik.equals("stop")) {
+            while (!zawodnik.equals(STOP_WORD)) {
                 System.out.println("Podaj zawodnika (w formacie IMIE NAZWISKO WYNIK. Wpisz 'stop' aby zakończyć): ");
                 zawodnik = scanner.nextLine();
-                if (!zawodnik.equals("stop")) {
+                if (!zawodnik.equals(STOP_WORD)) {
                     String[] split = zawodnik.split(" ");
                     double score = Double.parseDouble(split[2]);
                     athletes.add(new Person(split[0], split[1], score));
@@ -28,7 +31,6 @@ public class Utils {
         Collections.sort(list);
         System.out.println("Posortowano uczestników w kolejności od największej ilości punktów.");
         saveScoresToCSV(list);
-
     }
 
     private static void saveScoresToCSV(List<Person> list) throws IOException {
@@ -49,6 +51,6 @@ public class Utils {
     }
 
     private static String toCSV(Person person) {
-        return person.getFirstName() + " " + person.getLastName() + ";" + person.getScore();
+        return person.getFirstName() + " " + person.getLastName() + " " + person.getScore();
     }
 }
