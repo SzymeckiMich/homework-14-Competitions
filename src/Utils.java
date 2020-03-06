@@ -8,23 +8,21 @@ public class Utils {
 
     static final String STOP_WORD = "stop";
 
-    public static List<Person> createNewAthletesList() {
-        return new ArrayList<>();
-    }
-
-    public static void addNewAthletesToList(List<Person> athletes) {
-        String zawodnik = "0";
+    public static List<Person> createAthletesFromUser() {
+        String athlete = "";
+        List<Person> athletes = new ArrayList<>();
         try (Scanner scanner = new Scanner(System.in)) {
-            while (!zawodnik.equals(STOP_WORD)) {
+            while (!athlete.equals(STOP_WORD)) {
                 System.out.println("Podaj zawodnika (w formacie IMIE NAZWISKO WYNIK. Wpisz 'stop' aby zakończyć): ");
-                zawodnik = scanner.nextLine();
-                if (!zawodnik.equals(STOP_WORD)) {
-                    String[] split = zawodnik.split(" ");
+                athlete = scanner.nextLine();
+                if (!athlete.equals(STOP_WORD)) {
+                    String[] split = athlete.split(" ");
                     double score = Double.parseDouble(split[2]);
                     athletes.add(new Person(split[0], split[1], score));
                 }
             }
         }
+        return athletes;
     }
 
     public static void sortAndSafeToCSV(List<Person> list) throws IOException {

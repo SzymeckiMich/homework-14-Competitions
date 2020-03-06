@@ -4,9 +4,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        List<Person> athletes = Utils.createNewAthletesList();
-
-        Utils.addNewAthletesToList(athletes);
+        List<Person> athletes = Utils.createAthletesFromUser();
 
         Utils.sortAndSafeToCSV(athletes);
     }
