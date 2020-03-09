@@ -12,14 +12,17 @@ public class Utils {
         String athlete = "";
         List<Person> athletes = new ArrayList<>();
         try (Scanner scanner = new Scanner(System.in)) {
-            while (!athlete.equals(STOP_WORD)) {
+            while (true) {
                 System.out.println("Podaj zawodnika (w formacie IMIE NAZWISKO WYNIK. Wpisz 'stop' aby zakończyć): ");
                 athlete = scanner.nextLine();
-                if (!athlete.equals(STOP_WORD)) {
-                    String[] split = athlete.split(" ");
-                    double score = Double.parseDouble(split[2]);
-                    athletes.add(new Person(split[0], split[1], score));
+
+                if (athlete.equals(STOP_WORD)) {
+                    break;
                 }
+
+                String[] split = athlete.split(" ");
+                double score = Double.parseDouble(split[2]);
+                athletes.add(new Person(split[0], split[1], score));
             }
         }
         return athletes;
